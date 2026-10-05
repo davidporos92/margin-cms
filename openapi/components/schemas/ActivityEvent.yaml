@@ -1,0 +1,30 @@
+type: object
+required:
+- id
+- type
+- actor
+- createdAt
+properties:
+  id:
+    type: string
+  type:
+    type: string
+    enum:
+    - post.created
+    - post.updated
+    - post.published
+    - post.unpublished
+    - post.archived
+    - post.deleted
+    - post.restored
+  postId:
+    type: string
+    nullable: true
+  postTitle:
+    type: string
+    description: Title at the time of the event.
+  actor:
+    type: string
+  createdAt:
+    type: string
+    format: date-time

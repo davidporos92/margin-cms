@@ -1,0 +1,6 @@
+name: id
+in: path
+required: true
+schema:
+  type: string
+  example: 01J9ZQ3K8M7V2X4N6P1R5T0WYB

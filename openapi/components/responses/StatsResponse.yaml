@@ -1,0 +1,5 @@
+description: Counts and a 30-day edit series
+content:
+  application/json:
+    schema:
+      $ref: ../schemas/Stats.yaml

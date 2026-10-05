@@ -1,0 +1,5 @@
+description: Conflicts with existing data, for example the slug is already in use
+content:
+  application/problem+json:
+    schema:
+      $ref: ../schemas/Problem.yaml

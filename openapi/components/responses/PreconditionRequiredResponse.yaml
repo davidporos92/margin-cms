@@ -1,0 +1,5 @@
+description: '`If-Match` header missing'
+content:
+  application/problem+json:
+    schema:
+      $ref: ../schemas/Problem.yaml

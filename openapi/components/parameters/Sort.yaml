@@ -1,0 +1,15 @@
+name: sort
+in: query
+description: Field name, prefixed with `-` for descending.
+schema:
+  type: string
+  enum:
+  - updatedAt
+  - -updatedAt
+  - createdAt
+  - -createdAt
+  - publishedAt
+  - -publishedAt
+  - title
+  - -title
+  default: -updatedAt

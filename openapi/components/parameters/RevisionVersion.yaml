@@ -1,0 +1,6 @@
+name: version
+in: path
+required: true
+schema:
+  type: integer
+  minimum: 1

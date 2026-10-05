@@ -1,0 +1,36 @@
+type: object
+required:
+- type
+- title
+- status
+properties:
+  type:
+    type: string
+    example: about:blank
+  title:
+    type: string
+    example: Validation failed
+  status:
+    type: integer
+    example: 422
+  detail:
+    type: string
+  errors:
+    type: array
+    description: Field-level problems, for forms.
+    items:
+      type: object
+      required:
+      - field
+      - message
+      properties:
+        field:
+          type: string
+          example: title
+        message:
+          type: string
+          example: must not be empty
+  extensions:
+    type: object
+    additionalProperties: true
+    description: Extra data. On 412 this holds `current` (the latest Post).

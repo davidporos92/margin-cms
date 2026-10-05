@@ -1,0 +1,5 @@
+name: cursor
+in: query
+description: Opaque value from a previous `nextCursor`.
+schema:
+  type: string

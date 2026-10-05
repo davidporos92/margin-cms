@@ -1,0 +1,5 @@
+description: Service is up
+content:
+  application/json:
+    schema:
+      $ref: ../schemas/Health.yaml

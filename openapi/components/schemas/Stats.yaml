@@ -1,0 +1,35 @@
+type: object
+required:
+- counts
+- wordsPublished
+- editsPerDay
+properties:
+  counts:
+    type: object
+    required:
+    - draft
+    - published
+    - archived
+    properties:
+      draft:
+        type: integer
+      published:
+        type: integer
+      archived:
+        type: integer
+  wordsPublished:
+    type: integer
+  editsPerDay:
+    type: array
+    description: Last 30 days, oldest first, one entry per day.
+    items:
+      type: object
+      required:
+      - date
+      - edits
+      properties:
+        date:
+          type: string
+          format: date
+        edits:
+          type: integer

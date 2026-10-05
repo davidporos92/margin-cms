@@ -1,0 +1,5 @@
+description: A page of revisions
+content:
+  application/json:
+    schema:
+      $ref: ../schemas/RevisionPage.yaml

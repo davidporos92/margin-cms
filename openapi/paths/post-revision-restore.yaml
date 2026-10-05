@@ -1,0 +1,20 @@
+parameters:
+- $ref: ../components/parameters/PostId.yaml
+- $ref: ../components/parameters/RevisionVersion.yaml
+post:
+  tags:
+  - posts
+  operationId: restoreRevision
+  summary: Copy an old revision back into the post
+  description: Creates a new revision; history is never rewritten.
+  parameters:
+  - $ref: ../components/parameters/IfMatch.yaml
+  responses:
+    '200':
+      $ref: ../components/responses/PostResponse.yaml
+    '401':
+      $ref: ../components/responses/UnauthorizedResponse.yaml
+    '404':
+      $ref: ../components/responses/NotFoundResponse.yaml
+    '412':
+      $ref: ../components/responses/PreconditionFailedResponse.yaml

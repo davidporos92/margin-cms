@@ -1,0 +1,26 @@
+type: object
+required:
+- postId
+- version
+- title
+- body
+- createdAt
+- author
+properties:
+  postId:
+    type: string
+  version:
+    type: integer
+    minimum: 1
+  title:
+    type: string
+  excerpt:
+    type: string
+  body:
+    type: string
+  author:
+    type: string
+    example: david
+  createdAt:
+    type: string
+    format: date-time

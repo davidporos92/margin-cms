@@ -1,0 +1,11 @@
+type: object
+required:
+- name
+- count
+properties:
+  name:
+    type: string
+    example: postgres
+  count:
+    type: integer
+    example: 3

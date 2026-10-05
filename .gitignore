@@ -29,5 +29,31 @@ go.work.sum
 .env
 
 # Editor/IDE
-# .idea/
-# .vscode/
+# .idea/ (ignored below)
+# .vscode/ (ignored below)
+
+node_modules/
+
+# macOS and editors
+.DS_Store
+.idea/
+.vscode/
+
+# Secrets and local config (keep a .env.example if you add one)
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Local SQLite databases
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+
+# Build output
+dist/
+/bin/
+
+notes/

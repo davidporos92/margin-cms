@@ -1,0 +1,13 @@
+allOf:
+- $ref: ./PostSummary.yaml
+- type: object
+  required:
+  - body
+  properties:
+    body:
+      type: string
+      description: Markdown.
+      example: |-
+        ## Why a test bed
+
+        Before any number, a dataset you can trust.

@@ -1,0 +1,7 @@
+name: If-Match
+in: header
+required: true
+description: The `ETag` from the last read of this post, e.g. `"7"`.
+schema:
+  type: string
+  example: '"7"'

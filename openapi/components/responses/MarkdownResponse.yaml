@@ -1,0 +1,5 @@
+description: Markdown file with front matter
+content:
+  text/markdown:
+    schema:
+      type: string

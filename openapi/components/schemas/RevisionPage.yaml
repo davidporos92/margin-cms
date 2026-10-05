@@ -1,0 +1,11 @@
+type: object
+required:
+- items
+properties:
+  items:
+    type: array
+    items:
+      $ref: ./Revision.yaml
+  nextCursor:
+    type: string
+    nullable: true

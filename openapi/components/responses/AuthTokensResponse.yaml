@@ -1,0 +1,5 @@
+description: A new token pair. The refresh token you sent is now revoked.
+content:
+  application/json:
+    schema:
+      $ref: ../schemas/AuthTokens.yaml

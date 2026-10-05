@@ -1,0 +1,14 @@
+get:
+  tags:
+  - activity
+  operationId: listActivity
+  summary: Audit trail, newest first
+  parameters:
+  - $ref: ../components/parameters/ActivityPostId.yaml
+  - $ref: ../components/parameters/Limit.yaml
+  - $ref: ../components/parameters/Cursor.yaml
+  responses:
+    '200':
+      $ref: ../components/responses/ActivityPageResponse.yaml
+    '401':
+      $ref: ../components/responses/UnauthorizedResponse.yaml

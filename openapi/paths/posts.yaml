@@ -1,0 +1,33 @@
+get:
+  tags:
+  - posts
+  operationId: listPosts
+  summary: List posts (without body)
+  parameters:
+  - $ref: ../components/parameters/StatusFilter.yaml
+  - $ref: ../components/parameters/TagFilter.yaml
+  - $ref: ../components/parameters/SearchQuery.yaml
+  - $ref: ../components/parameters/Sort.yaml
+  - $ref: ../components/parameters/Limit.yaml
+  - $ref: ../components/parameters/Cursor.yaml
+  responses:
+    '200':
+      $ref: ../components/responses/PostPageResponse.yaml
+    '401':
+      $ref: ../components/responses/UnauthorizedResponse.yaml
+post:
+  tags:
+  - posts
+  operationId: createPost
+  summary: Create a draft post
+  requestBody:
+    $ref: ../components/requestBodies/PostCreateRequest.yaml
+  responses:
+    '201':
+      $ref: ../components/responses/PostCreatedResponse.yaml
+    '401':
+      $ref: ../components/responses/UnauthorizedResponse.yaml
+    '409':
+      $ref: ../components/responses/ConflictResponse.yaml
+    '422':
+      $ref: ../components/responses/ValidationErrorResponse.yaml

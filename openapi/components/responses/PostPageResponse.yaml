@@ -1,0 +1,5 @@
+description: A page of posts
+content:
+  application/json:
+    schema:
+      $ref: ../schemas/PostPage.yaml

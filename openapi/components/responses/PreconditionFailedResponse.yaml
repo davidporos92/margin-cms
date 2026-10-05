@@ -1,0 +1,5 @@
+description: Stale `If-Match`. `extensions.current` holds the latest post.
+content:
+  application/problem+json:
+    schema:
+      $ref: ../schemas/Problem.yaml

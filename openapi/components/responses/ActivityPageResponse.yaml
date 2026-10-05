@@ -1,0 +1,5 @@
+description: A page of activity events
+content:
+  application/json:
+    schema:
+      $ref: ../schemas/ActivityPage.yaml

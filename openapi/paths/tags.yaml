@@ -1,0 +1,10 @@
+get:
+  tags:
+  - tags
+  operationId: listTags
+  summary: All tags with usage counts
+  responses:
+    '200':
+      $ref: ../components/responses/TagListResponse.yaml
+    '401':
+      $ref: ../components/responses/UnauthorizedResponse.yaml

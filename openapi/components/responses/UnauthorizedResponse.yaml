@@ -1,0 +1,5 @@
+description: Missing, invalid or expired token (access token, refresh token, or wrong login)
+content:
+  application/problem+json:
+    schema:
+      $ref: ../schemas/Problem.yaml

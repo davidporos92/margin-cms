@@ -1,0 +1,18 @@
+post:
+  tags:
+  - auth
+  operationId: logout
+  summary: Revoke a refresh token
+  description: |
+    Needs no access token, because the access token may already have expired.
+    Always returns 204, also for an unknown or already revoked token. The
+    access token itself stays valid until it expires (at most `expiresIn`
+    seconds); the client should just drop it.
+  security: []
+  requestBody:
+    $ref: ../components/requestBodies/RefreshTokenRequest.yaml
+  responses:
+    '204':
+      $ref: ../components/responses/NoContentResponse.yaml
+    '422':
+      $ref: ../components/responses/ValidationErrorResponse.yaml

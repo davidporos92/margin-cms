@@ -1,0 +1,15 @@
+post:
+  tags:
+  - auth
+  operationId: login
+  summary: Log in with email and password
+  security: []
+  requestBody:
+    $ref: ../components/requestBodies/LoginRequest.yaml
+  responses:
+    '200':
+      $ref: ../components/responses/LoginResultResponse.yaml
+    '401':
+      $ref: ../components/responses/UnauthorizedResponse.yaml
+    '422':
+      $ref: ../components/responses/ValidationErrorResponse.yaml

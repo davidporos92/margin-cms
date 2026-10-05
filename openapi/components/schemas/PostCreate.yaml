@@ -1,0 +1,22 @@
+type: object
+required:
+- title
+properties:
+  title:
+    type: string
+    minLength: 1
+    maxLength: 200
+  slug:
+    type: string
+    pattern: ^[a-z0-9]+(?:-[a-z0-9]+)*$
+    description: Generated from the title when omitted.
+  excerpt:
+    type: string
+    maxLength: 500
+  body:
+    type: string
+    default: ''
+  tags:
+    type: array
+    items:
+      type: string

@@ -1,0 +1,9 @@
+name: status
+in: query
+description: Repeat to filter by several statuses.
+schema:
+  type: array
+  items:
+    $ref: ../schemas/PostStatus.yaml
+style: form
+explode: true

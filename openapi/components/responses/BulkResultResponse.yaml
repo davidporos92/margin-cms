@@ -1,0 +1,5 @@
+description: Per-id outcome
+content:
+  application/json:
+    schema:
+      $ref: ../schemas/BulkResult.yaml

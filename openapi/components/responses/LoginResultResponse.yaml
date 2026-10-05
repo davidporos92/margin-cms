@@ -1,0 +1,5 @@
+description: Logged in. Tokens and the user.
+content:
+  application/json:
+    schema:
+      $ref: ../schemas/LoginResult.yaml

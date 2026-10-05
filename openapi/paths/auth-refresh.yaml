@@ -1,0 +1,20 @@
+post:
+  tags:
+  - auth
+  operationId: refreshTokens
+  summary: Swap a refresh token for a new token pair
+  description: |
+    Needs no access token. A refresh token works once. If a refresh token that
+    was already used turns up again, the server treats it as stolen and revokes
+    every refresh token of that user, so the next call returns 401 and the
+    client has to log in again.
+  security: []
+  requestBody:
+    $ref: ../components/requestBodies/RefreshTokenRequest.yaml
+  responses:
+    '200':
+      $ref: ../components/responses/AuthTokensResponse.yaml
+    '401':
+      $ref: ../components/responses/UnauthorizedResponse.yaml
+    '422':
+      $ref: ../components/responses/ValidationErrorResponse.yaml

@@ -1,0 +1,27 @@
+type: object
+required:
+- accessToken
+- refreshToken
+- tokenType
+- expiresIn
+properties:
+  accessToken:
+    type: string
+    description: |
+      Signed JWT. Send it as `Authorization: Bearer <accessToken>`.
+      Claims: `sub` (user id), `iat`, `exp`, `jti`.
+    example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzEiLCJleHAiOjE3OTEyMDg1MDB9.c2lnbmF0dXJl
+  refreshToken:
+    type: string
+    description: |
+      Opaque random string, valid for days (the server decides). Single use:
+      every `/auth/refresh` call returns a new one and revokes the old one.
+    example: 4b7e1c9a0d2f4f1e9a3c6d8b5e7f0a12
+  tokenType:
+    type: string
+    enum:
+    - Bearer
+  expiresIn:
+    type: integer
+    description: Seconds until the access token expires.
+    example: 900

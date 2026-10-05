@@ -1,0 +1,18 @@
+post:
+  tags:
+  - posts
+  operationId: bulkPosts
+  summary: Apply one action to many posts
+  description: |
+    Not atomic. Each id is handled on its own; the response says which
+    succeeded and which failed (with a reason). Built for multi-select
+    in the posts table.
+  requestBody:
+    $ref: ../components/requestBodies/PostBulkRequest.yaml
+  responses:
+    '200':
+      $ref: ../components/responses/BulkResultResponse.yaml
+    '401':
+      $ref: ../components/responses/UnauthorizedResponse.yaml
+    '422':
+      $ref: ../components/responses/ValidationErrorResponse.yaml

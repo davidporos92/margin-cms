@@ -1,0 +1,5 @@
+name: q
+in: query
+description: Case-insensitive match on title, excerpt and body.
+schema:
+  type: string

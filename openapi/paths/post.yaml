@@ -1,0 +1,58 @@
+parameters:
+- $ref: ../components/parameters/PostId.yaml
+get:
+  tags:
+  - posts
+  operationId: getPost
+  summary: Get a post with its body
+  responses:
+    '200':
+      $ref: ../components/responses/PostResponse.yaml
+    '401':
+      $ref: ../components/responses/UnauthorizedResponse.yaml
+    '404':
+      $ref: ../components/responses/NotFoundResponse.yaml
+patch:
+  tags:
+  - posts
+  operationId: updatePost
+  summary: Update fields of a post
+  description: |
+    Send only the fields that change. Changing `status` to `published`
+    sets `publishedAt` on first publish. Every successful update that
+    changes title, excerpt or body adds a revision.
+  parameters:
+  - $ref: ../components/parameters/IfMatch.yaml
+  requestBody:
+    $ref: ../components/requestBodies/PostUpdateRequest.yaml
+  responses:
+    '200':
+      $ref: ../components/responses/PostResponse.yaml
+    '401':
+      $ref: ../components/responses/UnauthorizedResponse.yaml
+    '404':
+      $ref: ../components/responses/NotFoundResponse.yaml
+    '409':
+      $ref: ../components/responses/ConflictResponse.yaml
+    '412':
+      $ref: ../components/responses/PreconditionFailedResponse.yaml
+    '422':
+      $ref: ../components/responses/ValidationErrorResponse.yaml
+    '428':
+      $ref: ../components/responses/PreconditionRequiredResponse.yaml
+delete:
+  tags:
+  - posts
+  operationId: deletePost
+  summary: Delete a post
+  parameters:
+  - $ref: ../components/parameters/IfMatch.yaml
+  responses:
+    '204':
+      $ref: ../components/responses/NoContentResponse.yaml
+    '401':
+      $ref: ../components/responses/UnauthorizedResponse.yaml
+    '404':
+      $ref: ../components/responses/NotFoundResponse.yaml
+    '412':
+      $ref: ../components/responses/PreconditionFailedResponse.yaml

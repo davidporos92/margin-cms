@@ -1,0 +1,6 @@
+extends:
+  - recommended
+rules:
+  info-license: off              # pet project, no license field needed
+  no-server-example.com: off
+  operation-4xx-response: off    # /healthz has no failure mode

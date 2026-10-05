@@ -1,0 +1,20 @@
+{
+  "name": "margin-cms",
+  "private": true,
+  "engines": {
+    "node": ">=22"
+  },
+  "workspaces": ["web"],
+  "scripts": {
+    "spec:lint": "redocly lint --config openapi/redocly.yaml openapi/openapi.yaml",
+    "spec:bundle": "redocly bundle openapi/openapi.yaml -o openapi/dist/openapi.bundled.yaml",
+    "spec:mock": "npm run spec:bundle && prism mock openapi/dist/openapi.bundled.yaml -p 4010",
+    "spec:docs": "redocly build-docs openapi/openapi.yaml -o openapi/dist/index.html",
+    "gen:ts": "npm run spec:bundle && openapi-typescript openapi/dist/openapi.bundled.yaml -o web/src/api/schema.d.ts"
+  },
+  "devDependencies": {
+    "@redocly/cli": "^2",
+    "@stoplight/prism-cli": "^5",
+    "openapi-typescript": "^7"
+  }
+}

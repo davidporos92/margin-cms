@@ -1,0 +1,49 @@
+type: object
+required:
+- id
+- title
+- slug
+- status
+- tags
+- version
+- wordCount
+- createdAt
+- updatedAt
+properties:
+  id:
+    type: string
+    example: 01J9ZQ3K8M7V2X4N6P1R5T0WYB
+  title:
+    type: string
+    example: A test bed worth trusting
+  slug:
+    type: string
+    example: a-test-bed-worth-trusting
+  excerpt:
+    type: string
+  status:
+    $ref: ./PostStatus.yaml
+  tags:
+    type: array
+    items:
+      type: string
+    example:
+    - postgres
+    - performance
+  version:
+    type: integer
+    minimum: 1
+    example: 7
+  wordCount:
+    type: integer
+    example: 1840
+  createdAt:
+    type: string
+    format: date-time
+  updatedAt:
+    type: string
+    format: date-time
+  publishedAt:
+    type: string
+    format: date-time
+    nullable: true

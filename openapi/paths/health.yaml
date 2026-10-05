@@ -1,0 +1,9 @@
+get:
+  tags:
+  - meta
+  operationId: getHealth
+  summary: Liveness check
+  security: []
+  responses:
+    '200':
+      $ref: ../components/responses/HealthResponse.yaml

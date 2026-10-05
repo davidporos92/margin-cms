@@ -1,0 +1,18 @@
+parameters:
+- $ref: ../components/parameters/PostId.yaml
+get:
+  tags:
+  - posts
+  operationId: exportPost
+  summary: Markdown with front matter
+  description: |
+    Same shape the existing blog pipeline reads (`title`, `description`,
+    `date`, `tags`, `slug`). Lets a post be copied into the Jekyll repo
+    by hand or by script. Does not publish anywhere.
+  responses:
+    '200':
+      $ref: ../components/responses/MarkdownResponse.yaml
+    '401':
+      $ref: ../components/responses/UnauthorizedResponse.yaml
+    '404':
+      $ref: ../components/responses/NotFoundResponse.yaml

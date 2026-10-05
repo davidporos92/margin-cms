@@ -1,0 +1,195 @@
+openapi: 3.0.3
+info:
+  title: MarginCMS API
+  version: 0.1.0
+  description: |
+    Contract between the Go backend (`/api`) and the React frontend (`/web`).
+    Name: MarginCMS. This file is the single source of truth. Change it first,
+    in its own PR, approved by both sides, and only then change code.
+
+    Conventions
+    - JSON everywhere, camelCase fields, RFC 3339 UTC timestamps.
+    - Errors are RFC 9457 `application/problem+json`.
+    - Optimistic concurrency: every Post has an integer `version`, returned as the
+      `ETag` header (`"7"`). `PATCH` and `DELETE` need `If-Match`. A stale version
+      returns 412 with the current post in `extensions.current`.
+    - Lists use cursor pagination (`limit`, `cursor`, response `nextCursor`).
+    - Auth is a short-lived JWT access token sent as `Authorization: Bearer <token>`.
+      `/auth/login` returns it together with a single-use refresh token.
+      `/auth/refresh` swaps a refresh token for a new pair, and `/auth/logout`
+      revokes one. On a 401 from any other endpoint, refresh once and retry the
+      request. No cookies are involved, so CSRF protection is not needed.
+servers:
+- url: http://localhost:8080/api/v1
+  description: Local backend (the Vite dev server proxies /api here)
+- url: http://localhost:4010
+  description: Prism mock server (`prism mock dist/openapi.bundled.yaml`)
+tags:
+- name: auth
+  description: Login, token refresh and logout
+- name: posts
+  description: Posts, bulk actions, revisions and export
+- name: tags
+  description: Tag usage counts
+- name: activity
+  description: Audit trail of changes
+- name: stats
+  description: Numbers for the dashboard home
+- name: meta
+  description: Service health
+security:
+- bearerAuth: []
+paths:
+  /healthz:
+    $ref: ./paths/health.yaml
+  /auth/login:
+    $ref: ./paths/auth-login.yaml
+  /auth/refresh:
+    $ref: ./paths/auth-refresh.yaml
+  /auth/logout:
+    $ref: ./paths/auth-logout.yaml
+  /auth/me:
+    $ref: ./paths/auth-me.yaml
+  /posts:
+    $ref: ./paths/posts.yaml
+  /posts/bulk:
+    $ref: ./paths/posts-bulk.yaml
+  /posts/{id}:
+    $ref: ./paths/post.yaml
+  /posts/{id}/revisions:
+    $ref: ./paths/post-revisions.yaml
+  /posts/{id}/revisions/{version}/restore:
+    $ref: ./paths/post-revision-restore.yaml
+  /posts/{id}/export:
+    $ref: ./paths/post-export.yaml
+  /tags:
+    $ref: ./paths/tags.yaml
+  /activity:
+    $ref: ./paths/activity.yaml
+  /stats:
+    $ref: ./paths/stats.yaml
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    ActivityEvent:
+      $ref: ./components/schemas/ActivityEvent.yaml
+    ActivityPage:
+      $ref: ./components/schemas/ActivityPage.yaml
+    AuthTokens:
+      $ref: ./components/schemas/AuthTokens.yaml
+    BulkRequest:
+      $ref: ./components/schemas/BulkRequest.yaml
+    BulkResult:
+      $ref: ./components/schemas/BulkResult.yaml
+    Credentials:
+      $ref: ./components/schemas/Credentials.yaml
+    Health:
+      $ref: ./components/schemas/Health.yaml
+    LoginResult:
+      $ref: ./components/schemas/LoginResult.yaml
+    Post:
+      $ref: ./components/schemas/Post.yaml
+    PostCreate:
+      $ref: ./components/schemas/PostCreate.yaml
+    PostPage:
+      $ref: ./components/schemas/PostPage.yaml
+    PostStatus:
+      $ref: ./components/schemas/PostStatus.yaml
+    PostSummary:
+      $ref: ./components/schemas/PostSummary.yaml
+    PostUpdate:
+      $ref: ./components/schemas/PostUpdate.yaml
+    Problem:
+      $ref: ./components/schemas/Problem.yaml
+    RefreshTokenRequest:
+      $ref: ./components/schemas/RefreshTokenRequest.yaml
+    Revision:
+      $ref: ./components/schemas/Revision.yaml
+    RevisionPage:
+      $ref: ./components/schemas/RevisionPage.yaml
+    Stats:
+      $ref: ./components/schemas/Stats.yaml
+    TagCount:
+      $ref: ./components/schemas/TagCount.yaml
+    User:
+      $ref: ./components/schemas/User.yaml
+  parameters:
+    ActivityPostId:
+      $ref: ./components/parameters/ActivityPostId.yaml
+    Cursor:
+      $ref: ./components/parameters/Cursor.yaml
+    IfMatch:
+      $ref: ./components/parameters/IfMatch.yaml
+    Limit:
+      $ref: ./components/parameters/Limit.yaml
+    PostId:
+      $ref: ./components/parameters/PostId.yaml
+    RevisionVersion:
+      $ref: ./components/parameters/RevisionVersion.yaml
+    SearchQuery:
+      $ref: ./components/parameters/SearchQuery.yaml
+    Sort:
+      $ref: ./components/parameters/Sort.yaml
+    StatusFilter:
+      $ref: ./components/parameters/StatusFilter.yaml
+    TagFilter:
+      $ref: ./components/parameters/TagFilter.yaml
+  headers:
+    ETag:
+      $ref: ./components/headers/ETag.yaml
+  responses:
+    ActivityPageResponse:
+      $ref: ./components/responses/ActivityPageResponse.yaml
+    AuthTokensResponse:
+      $ref: ./components/responses/AuthTokensResponse.yaml
+    BulkResultResponse:
+      $ref: ./components/responses/BulkResultResponse.yaml
+    ConflictResponse:
+      $ref: ./components/responses/ConflictResponse.yaml
+    HealthResponse:
+      $ref: ./components/responses/HealthResponse.yaml
+    LoginResultResponse:
+      $ref: ./components/responses/LoginResultResponse.yaml
+    MarkdownResponse:
+      $ref: ./components/responses/MarkdownResponse.yaml
+    NoContentResponse:
+      $ref: ./components/responses/NoContentResponse.yaml
+    NotFoundResponse:
+      $ref: ./components/responses/NotFoundResponse.yaml
+    PostCreatedResponse:
+      $ref: ./components/responses/PostCreatedResponse.yaml
+    PostPageResponse:
+      $ref: ./components/responses/PostPageResponse.yaml
+    PostResponse:
+      $ref: ./components/responses/PostResponse.yaml
+    PreconditionFailedResponse:
+      $ref: ./components/responses/PreconditionFailedResponse.yaml
+    PreconditionRequiredResponse:
+      $ref: ./components/responses/PreconditionRequiredResponse.yaml
+    RevisionPageResponse:
+      $ref: ./components/responses/RevisionPageResponse.yaml
+    StatsResponse:
+      $ref: ./components/responses/StatsResponse.yaml
+    TagListResponse:
+      $ref: ./components/responses/TagListResponse.yaml
+    UnauthorizedResponse:
+      $ref: ./components/responses/UnauthorizedResponse.yaml
+    UserResponse:
+      $ref: ./components/responses/UserResponse.yaml
+    ValidationErrorResponse:
+      $ref: ./components/responses/ValidationErrorResponse.yaml
+  requestBodies:
+    LoginRequest:
+      $ref: ./components/requestBodies/LoginRequest.yaml
+    PostBulkRequest:
+      $ref: ./components/requestBodies/PostBulkRequest.yaml
+    PostCreateRequest:
+      $ref: ./components/requestBodies/PostCreateRequest.yaml
+    PostUpdateRequest:
+      $ref: ./components/requestBodies/PostUpdateRequest.yaml
+    RefreshTokenRequest:
+      $ref: ./components/requestBodies/RefreshTokenRequest.yaml

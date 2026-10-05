@@ -1,0 +1,4 @@
+description: Current post version in quotes, e.g. `"7"`.
+schema:
+  type: string
+  example: '"7"'

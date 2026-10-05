@@ -1,0 +1,22 @@
+type: object
+required:
+- succeeded
+- failed
+properties:
+  succeeded:
+    type: array
+    items:
+      type: string
+  failed:
+    type: array
+    items:
+      type: object
+      required:
+      - id
+      - reason
+      properties:
+        id:
+          type: string
+        reason:
+          type: string
+          example: not found
