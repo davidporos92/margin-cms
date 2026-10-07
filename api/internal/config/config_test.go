@@ -15,6 +15,10 @@ func TestNew_Defaults(t *testing.T) {
 		Server: &server.Config{
 			Addr:              ":8080",
 			ShutdownTimeout:   30 * time.Second,
+			AllowedOrigins:    []string{"http://localhost:8081"},
+			AllowedMethods:    []string{"GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"},
+			AllowedHeaders:    []string{"Authorization", "Content-Type"},
+			AllowCredentials:  false,
 			ReadHeaderTimeout: 5 * time.Second,
 			ReadTimeout:       30 * time.Second,
 			WriteTimeout:      30 * time.Second,

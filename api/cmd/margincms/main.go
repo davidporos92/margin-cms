@@ -11,6 +11,7 @@ import (
 	"github.com/davidporos92/margin-cms/api/internal/api"
 	"github.com/davidporos92/margin-cms/api/internal/config"
 	"github.com/davidporos92/margin-cms/api/internal/server"
+	"github.com/go-chi/cors"
 )
 
 func main() {
@@ -23,6 +24,12 @@ func main() {
 	handler := api.HandlerWithOptions(serverInterface, api.ChiServerOptions{
 		BaseURL: "/api/v1",
 	})
+	handler = cors.Handler(cors.Options{
+		AllowedOrigins:   cfg.Server.AllowedOrigins,
+		AllowedHeaders:   cfg.Server.AllowedHeaders,
+		AllowedMethods:   cfg.Server.AllowedMethods,
+		AllowCredentials: cfg.Server.AllowCredentials,
+	})(handler)
 	srv := &http.Server{
 		Addr:              cfg.Server.Addr,
 		Handler:           handler,
