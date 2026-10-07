@@ -8,8 +8,8 @@
   "scripts": {
     "spec:lint": "redocly lint --config openapi/redocly.yaml openapi/openapi.yaml",
     "spec:bundle": "redocly bundle openapi/openapi.yaml -o openapi/dist/openapi.bundled.yaml",
-    "spec:mock": "npm run spec:bundle && prism mock openapi/dist/openapi.bundled.yaml -p 4010",
-    "spec:docs": "redocly build-docs openapi/openapi.yaml -o openapi/dist/index.html",
+    "spec:mock": "prism mock openapi/openapi.yaml -h 0.0.0.0 -p 8082",
+    "spec:docs": "redocly preview --project-dir=./openapi --port=8081",
     "gen:ts": "npm run spec:bundle && openapi-typescript openapi/dist/openapi.bundled.yaml -o web/src/api/schema.d.ts"
   },
   "devDependencies": {

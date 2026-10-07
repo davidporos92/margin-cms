@@ -21,9 +21,9 @@ info:
       request. No cookies are involved, so CSRF protection is not needed.
 servers:
 - url: http://localhost:8080/api/v1
-  description: Local backend (the Vite dev server proxies /api here)
-- url: http://localhost:4010
-  description: Prism mock server (`prism mock dist/openapi.bundled.yaml`)
+  description: Local backend
+- url: http://localhost:8082
+  description: Prism mock server
 tags:
 - name: auth
   description: Login, token refresh and logout

@@ -19,8 +19,8 @@ openapi/
 ## Commands
 
 ```sh
-npx @redocly/cli lint openapi/openapi.yaml
-npx @redocly/cli bundle openapi/openapi.yaml -o openapi/dist/openapi.bundled.yaml
+make openapi-lint
+make openapi-bundle
 ```
 
 Tools that follow multi-file `$ref`s can read `openapi.yaml` directly (`openapi-typescript`, Redocly, Prism). Go's `oapi-codegen` is easier to point at the bundle, so run `bundle` first and generate from `dist/openapi.bundled.yaml`.
