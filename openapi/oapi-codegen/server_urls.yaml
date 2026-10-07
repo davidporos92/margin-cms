@@ -1,0 +1,6 @@
+package: api
+
+generate:
+  server-urls: true
+
+output: internal/api/server_urls.go
